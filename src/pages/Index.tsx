@@ -179,7 +179,7 @@ function Hero() {
           </h1>
 
           <p className="text-white/55 text-lg leading-relaxed mb-10 max-w-md">
-            Скрипты ZennoPoster, Telegram-боты, парсинг маркетплейсов и ротация прокси — под ключ, с гарантией результата.
+            Скрипты ZennoPoster, Telegram-боты, парсинг маркетплейсов и аналитика данных — под ключ, с гарантией результата.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -270,13 +270,6 @@ function Services() {
       desc: "Сбор данных с Wildberries, Ozon, Яндекс.Маркет: цены, остатки, отзывы. Мониторинг конкурентов в реальном времени.",
       tags: ["WB", "Ozon", "Яндекс.Маркет"],
       color: "#32D74B",
-    },
-    {
-      icon: "Repeat",
-      title: "Ротация прокси",
-      desc: "Смена fingerprint, эмуляция реального браузера, ротация IP. Стабильная работа при любых антибот-защитах.",
-      tags: ["Proxy", "Fingerprint", "AntiBot"],
-      color: "#FF9F0A",
     },
     {
       icon: "BarChart3",
@@ -504,7 +497,7 @@ function Portfolio() {
 }
 
 function Ticker() {
-  const items = ["ZennoPoster", "Telegram Боты", "Парсинг WB", "Парсинг Ozon", "Яндекс.Маркет", "Ротация прокси", "API Интеграции", "Автоматизация"];
+  const items = ["ZennoPoster", "Telegram Боты", "Парсинг WB", "Парсинг Ozon", "Яндекс.Маркет", "Аналитика данных", "API Интеграции", "Автоматизация"];
   const doubled = [...items, ...items];
 
   return (
@@ -523,6 +516,27 @@ function Ticker() {
 
 function Contacts() {
   const [form, setForm] = useState({ name: "", contact: "", task: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async () => {
+    if (!form.contact.trim() || !form.task.trim()) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("https://functions.poehali.dev/b8dccf1a-db95-4009-bd43-7f96d8de1ee8", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", contact: "", task: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <section id="contacts" className="py-28 relative">
@@ -599,9 +613,23 @@ function Contacts() {
                     style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
                   />
                 </div>
-                <button className="w-full py-4 rounded-xl text-base font-bold glow-btn">
-                  Отправить заявку →
-                </button>
+                {status === "success" ? (
+                  <div className="w-full py-4 rounded-xl text-base font-semibold text-center"
+                    style={{ background: "rgba(50,215,75,0.15)", border: "1px solid rgba(50,215,75,0.4)", color: "#32D74B" }}>
+                    ✓ Заявка отправлена! Свяжемся с вами скоро.
+                  </div>
+                ) : (
+                  <button
+                    onClick={handleSubmit}
+                    disabled={status === "loading" || !form.contact.trim() || !form.task.trim()}
+                    className="w-full py-4 rounded-xl text-base font-bold glow-btn disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {status === "loading" ? "Отправляем..." : "Отправить заявку →"}
+                  </button>
+                )}
+                {status === "error" && (
+                  <p className="text-red-400 text-xs text-center">Ошибка отправки. Напишите напрямую в Telegram.</p>
+                )}
                 <p className="text-white/25 text-xs text-center">
                   Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
                 </p>
