@@ -179,7 +179,7 @@ function Hero() {
           </h1>
 
           <p className="text-white/55 text-lg leading-relaxed mb-10 max-w-md">
-            Скрипты ZennoPoster, Telegram-боты, парсинг маркетплейсов и обход блокировок — под ключ, с гарантией результата.
+            Скрипты ZennoPoster, Telegram-боты, парсинг маркетплейсов и ротация прокси — под ключ, с гарантией результата.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -272,9 +272,9 @@ function Services() {
       color: "#32D74B",
     },
     {
-      icon: "Shield",
-      title: "Обход блокировок",
-      desc: "Ротация прокси, смена fingerprint, эмуляция реального браузера. Стабильная работа даже при жёстких антибот-защитах.",
+      icon: "Repeat",
+      title: "Ротация прокси",
+      desc: "Смена fingerprint, эмуляция реального браузера, ротация IP. Стабильная работа при любых антибот-защитах.",
       tags: ["Proxy", "Fingerprint", "AntiBot"],
       color: "#FF9F0A",
     },
@@ -345,7 +345,7 @@ function Advantages() {
     { icon: "RefreshCw", title: "Поддержка после сдачи", desc: "Бесплатные правки в течение 30 дней. Сопровождение и обновления по договору.", color: "#32D74B" },
     { icon: "Code2", title: "Чистый код", desc: "Документированный, понятный код. Вы всегда знаете, как работает ваш скрипт.", color: "#FF9F0A" },
     { icon: "TrendingUp", title: "Результат измерим", desc: "Договариваемся о KPI: скорость, объём данных, процент успешных запросов.", color: "#FF3B30" },
-    { icon: "Headphones", title: "На связи 24/7", desc: "Telegram, email — отвечаем быстро. Никаких недель ожидания.", color: "#00F5FF" },
+    { icon: "Headphones", title: "На связи с 8 до 22ч", desc: "Telegram, email — отвечаем быстро. Никаких недель ожидания.", color: "#00F5FF" },
   ];
 
   return (
@@ -504,7 +504,7 @@ function Portfolio() {
 }
 
 function Ticker() {
-  const items = ["ZennoPoster", "Telegram Боты", "Парсинг WB", "Парсинг Ozon", "Яндекс.Маркет", "Обход блокировок", "API Интеграции", "Автоматизация"];
+  const items = ["ZennoPoster", "Telegram Боты", "Парсинг WB", "Парсинг Ozon", "Яндекс.Маркет", "Ротация прокси", "API Интеграции", "Автоматизация"];
   const doubled = [...items, ...items];
 
   return (
@@ -547,9 +547,8 @@ function Contacts() {
 
             <div className="space-y-5">
               {[
-                { icon: "MessageSquare", label: "Telegram", value: "@autoscript_dev", color: "#00F5FF" },
-                { icon: "Mail", label: "Email", value: "hello@autoscript.ru", color: "#BF5AF2" },
-                { icon: "Clock", label: "Ответ", value: "В течение 2 часов", color: "#32D74B" },
+                { icon: "MessageSquare", label: "Telegram", value: "@Aleksey_job", color: "#00F5FF" },
+                { icon: "Clock", label: "Режим работы", value: "С 8:00 до 22:00", color: "#32D74B" },
               ].map((c) => (
                 <div key={c.label} className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
