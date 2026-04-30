@@ -516,16 +516,21 @@ function Ticker() {
 
 function Contacts() {
   const [form, setForm] = useState({ name: "", contact: "", task: "" });
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submitTime] = useState(() => Date.now());
 
   const handleSubmit = async () => {
     if (!form.contact.trim() || !form.task.trim()) return;
+    if (honeypot) return;
+    if (Date.now() - submitTime < 3000) return;
+    if (form.task.trim().length < 10) return;
     setStatus("loading");
     try {
       const res = await fetch("https://functions.poehali.dev/b8dccf1a-db95-4009-bd43-7f96d8de1ee8", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, _hp: honeypot }),
       });
       if (res.ok) {
         setStatus("success");
@@ -560,21 +565,19 @@ function Contacts() {
             </p>
 
             <div className="space-y-5">
-              {[
-                { icon: "MessageSquare", label: "Telegram", value: "@Aleksey_job", color: "#00F5FF" },
-                { icon: "Clock", label: "Режим работы", value: "С 8:00 до 22:00", color: "#32D74B" },
-              ].map((c) => (
-                <div key={c.label} className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: `${c.color}12`, border: `1px solid ${c.color}25` }}>
-                    <Icon name={c.icon} size={18} style={{ color: c.color }} />
-                  </div>
-                  <div>
-                    <div className="text-white/35 text-xs">{c.label}</div>
-                    <div className="text-white font-medium text-sm">{c.value}</div>
-                  </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ background: "rgba(50,215,75,0.07)", border: "1px solid rgba(50,215,75,0.2)" }}>
+                  <Icon name="Clock" size={18} style={{ color: "#32D74B" }} />
                 </div>
-              ))}
+                <div>
+                  <div className="text-white/35 text-xs">Режим работы</div>
+                  <div className="text-white font-medium text-sm">С 8:00 до 22:00</div>
+                </div>
+              </div>
+              <p className="text-white/40 text-sm leading-relaxed">
+                Все заявки на работу отправляйте через форму <span className="text-white/60 font-medium">«Оставить заявку»</span> — мы свяжемся с вами в ближайшее время.
+              </p>
             </div>
           </AnimatedSection>
 
@@ -582,6 +585,14 @@ function Contacts() {
             <div className="glass-card neon-border-cyan rounded-3xl p-8">
               <h3 className="font-montserrat font-bold text-xl text-white mb-6">Оставить заявку</h3>
               <div className="space-y-4">
+                <input
+                  type="text"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }}
+                />
                 <div>
                   <label className="text-white/40 text-xs mb-1.5 block">Ваше имя</label>
                   <input
