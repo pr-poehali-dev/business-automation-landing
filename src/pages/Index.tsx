@@ -387,40 +387,67 @@ function Portfolio() {
   const [active, setActive] = useState(0);
   const projects = [
     {
-      img: PORTFOLIO_IMAGES.scraping,
-      tag: "ZennoPoster",
+      img: PORTFOLIO_IMAGES.bots,
+      tag: "Бот-консультант",
       tagColor: "#00F5FF",
-      title: "Автоматизация регистраций и прогрева аккаунтов",
-      desc: "Разработали скрипт для массовой регистрации и прогрева аккаунтов на крупном сервисе. Обход fingerprint-защиты, ротация прокси, имитация поведения реального пользователя.",
-      metrics: [
-        { label: "Аккаунтов/день", value: "500+" },
-        { label: "Успешных", value: "97%" },
-        { label: "Срок", value: "5 дней" },
-      ],
+      title: "Бот-консультант для медклиники (MAX + Telegram)",
+      desc: "Бот для записи пациентов, напоминаний и сбора обратной связи. Интеграция с CRM и Google-календарём. Работает как в Telegram, так и в MAX.",
+      stack: ["Python", "aiogram", "API MAX", "CRM-интеграция"],
+      price: "35 000 – 50 000 ₽",
     },
     {
-      img: PORTFOLIO_IMAGES.bots,
-      tag: "Telegram Bot",
-      tagColor: "#BF5AF2",
-      title: "Бот для автоматизации продаж в Telegram",
-      desc: "Полноценная воронка продаж в Telegram: квалификация лидов, отправка КП, интеграция с CRM и уведомления менеджерам. Обрабатывает до 1000 диалогов одновременно.",
-      metrics: [
-        { label: "Диалогов", value: "1000" },
-        { label: "Конверсия", value: "+34%" },
-        { label: "Срок", value: "7 дней" },
-      ],
+      img: PORTFOLIO_IMAGES.scraping,
+      tag: "IPv6-прокси",
+      tagColor: "#FF9F0A",
+      title: "Настройка IPv6-прокси для сервера",
+      desc: "Полная настройка VPS с российским IPv6, установка 3proxy, скрипт ротации IP по ссылке, инструкция для клиента. Рассчитано на 300–400 потоков.",
+      stack: ["Linux", "3proxy", "bash-скрипты", "WireGuard"],
+      price: "10 000 – 15 000 ₽",
     },
     {
       img: PORTFOLIO_IMAGES.analytics,
-      tag: "Парсинг",
+      tag: "Аналитика билетов",
+      tagColor: "#BF5AF2",
+      title: "Аналитика билетов для футбольных матчей (Manchester City)",
+      desc: "Бот на Python для мониторинга и автоматического расчёта стоимости билетов на матчи. Анализ доступных мест, динамики цен и автоматические уведомления.",
+      stack: ["Python", "Playwright", "API"],
+      price: "60 000 – 80 000 ₽",
+    },
+    {
+      img: PORTFOLIO_IMAGES.bots,
+      tag: "Сквозная аналитика",
       tagColor: "#32D74B",
-      title: "Мониторинг цен на Wildberries и Ozon",
-      desc: "Ежедневный сбор цен 50,000 товаров с WB и Ozon. Сравнение с конкурентами, алерты при изменении цены, выгрузка в Google Sheets и Telegram-уведомления.",
-      metrics: [
-        { label: "Товаров", value: "50,000" },
-        { label: "Обновление", value: "2 раза/день" },
-        { label: "Срок", value: "4 дня" },
-      ],
+      title: "Сквозная аналитика для рекламных кампаний (MAX + Т‑Банк + Google Sheets)",
+      desc: "Интеграция Telegram-бота с мессенджером MAX, API Т-Банка и Google Sheets. Система собирает UTM-метки, фиксирует подписки, платежи и формирует отчёты. Полностью автоматизирована.",
+      stack: ["Python", "aiogram", "API MAX", "Т-Банк API", "Google Sheets API"],
+      price: "45 000 – 65 000 ₽",
+    },
+    {
+      img: PORTFOLIO_IMAGES.analytics,
+      tag: "Расчёт зарплат",
+      tagColor: "#FF375F",
+      title: "Автоматический расчёт зарплат и премий по спецификации",
+      desc: "Скрипт для расчёта зарплаты и премий 500 сотрудников. На основе таблицы продаж рассчитывалось по 20–30 позиций на каждого. Использована комбинаторика для оптимизации.",
+      stack: ["Python", "Excel/CSV", "многопоточность", "комбинаторика"],
+      price: "55 000 – 75 000 ₽",
+    },
+    {
+      img: PORTFOLIO_IMAGES.analytics,
+      tag: "Маркетплейсы",
+      tagColor: "#00F5FF",
+      title: "Аналитика маркетплейсов (Ozon, WB) с уведомлениями в Telegram",
+      desc: "Скрипт для сбора данных о товарах (цены и остатки) с Ozon и Wildberries. Отчёты в Telegram и Google Sheets. Адаптирован под изменения структуры сайтов.",
+      stack: ["Python", "requests", "BeautifulSoup", "API маркетплейсов", "Telegram-бот"],
+      price: "20 000 – 35 000 ₽",
+    },
+    {
+      img: PORTFOLIO_IMAGES.scraping,
+      tag: "Чекер Ozon",
+      tagColor: "#BF5AF2",
+      title: "Чекер кодов товаров для Ozon (магазин упаковки)",
+      desc: "Автоматическая проверка кодов товаров на Ozon. Клиент получает уведомления о статусе закупок в Telegram. Скрипт работает с профилями, прокси, обрабатывает сбои и ведёт лог в Google Sheets.",
+      stack: ["ZennoPoster", "куки и прокси", "Google Sheets", "Telegram-бот"],
+      price: "30 000 – 40 000 ₽",
     },
   ];
 
@@ -443,17 +470,17 @@ function Portfolio() {
           </p>
         </AnimatedSection>
 
-        <div className="flex justify-center gap-3 mb-10 flex-wrap">
+        <div className="flex justify-center gap-2 mb-10 flex-wrap">
           {projects.map((proj, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
-              className="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300"
+              className="px-3 py-2 rounded-xl text-xs font-medium transition-all duration-300"
               style={{
                 background: active === i ? `${proj.tagColor}20` : "rgba(255,255,255,0.05)",
                 border: `1px solid ${active === i ? proj.tagColor : "rgba(255,255,255,0.08)"}`,
-                color: active === i ? proj.tagColor : "rgba(255,255,255,0.5)",
-                boxShadow: active === i ? `0 0 20px ${proj.tagColor}20` : "none",
+                color: active === i ? proj.tagColor : "rgba(255,255,255,0.45)",
+                boxShadow: active === i ? `0 0 16px ${proj.tagColor}25` : "none",
               }}
             >
               {proj.tag}
@@ -461,31 +488,42 @@ function Portfolio() {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 glass-card rounded-3xl overflow-hidden" style={{ border: `1px solid ${p.tagColor}20` }}>
+        <div className="grid md:grid-cols-2 gap-0 glass-card rounded-3xl overflow-hidden" style={{ border: `1px solid ${p.tagColor}20` }}>
           <div className="relative overflow-hidden" style={{ minHeight: "280px" }}>
             <img src={p.img} alt={p.title} className="w-full h-full object-cover absolute inset-0" />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(6,10,16,0.3), transparent)" }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(6,10,16,0.5), transparent)" }} />
             <span className="absolute top-4 left-4 px-3 py-1.5 rounded-lg text-xs font-bold"
               style={{ background: `${p.tagColor}25`, border: `1px solid ${p.tagColor}50`, color: p.tagColor }}>
               {p.tag}
             </span>
+            <div className="absolute bottom-4 left-4 right-4">
+              <div className="px-4 py-2.5 rounded-xl inline-block"
+                style={{ background: "rgba(6,10,16,0.75)", border: `1px solid ${p.tagColor}30` }}>
+                <div className="text-white/40 text-xs mb-0.5">Стоимость проекта</div>
+                <div className="font-montserrat font-black text-base" style={{ color: p.tagColor }}>{p.price}</div>
+              </div>
+            </div>
           </div>
 
-          <div className="p-8 flex flex-col justify-center">
-            <h3 className="font-montserrat font-black text-2xl text-white mb-4 leading-tight">{p.title}</h3>
-            <p className="text-white/50 leading-relaxed mb-8">{p.desc}</p>
+          <div className="p-8 flex flex-col justify-between">
+            <div>
+              <h3 className="font-montserrat font-black text-xl text-white mb-3 leading-tight">{p.title}</h3>
+              <p className="text-white/50 leading-relaxed text-sm mb-6">{p.desc}</p>
 
-            <div className="grid grid-cols-3 gap-4">
-              {p.metrics.map((m) => (
-                <div key={m.label} className="rounded-xl p-4 text-center"
-                  style={{ background: `${p.tagColor}08`, border: `1px solid ${p.tagColor}15` }}>
-                  <div className="font-montserrat text-xl font-black" style={{ color: p.tagColor }}>{m.value}</div>
-                  <div className="text-white/35 text-xs mt-1">{m.label}</div>
+              <div className="mb-6">
+                <div className="text-white/30 text-xs mb-2 uppercase tracking-wider">Стек технологий</div>
+                <div className="flex flex-wrap gap-2">
+                  {p.stack.map((s) => (
+                    <span key={s} className="px-2.5 py-1 rounded-lg text-xs font-medium"
+                      style={{ background: `${p.tagColor}10`, border: `1px solid ${p.tagColor}20`, color: p.tagColor }}>
+                      {s}
+                    </span>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
 
-            <a href="#contacts" className="mt-8 px-6 py-3 rounded-xl text-sm font-semibold text-center transition-all duration-300"
+            <a href="#contacts" className="px-6 py-3 rounded-xl text-sm font-semibold text-center transition-all duration-300 block"
               style={{ background: `${p.tagColor}15`, border: `1px solid ${p.tagColor}30`, color: p.tagColor }}>
               Хочу похожий проект →
             </a>
