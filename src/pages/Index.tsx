@@ -5,6 +5,8 @@ const PORTFOLIO_IMAGES = {
   scraping: "https://cdn.poehali.dev/projects/b4883119-28f2-4b14-87a8-78e96b1776df/files/5e0f56be-7456-43b9-bc92-75aacec38627.jpg",
   bots: "https://cdn.poehali.dev/projects/b4883119-28f2-4b14-87a8-78e96b1776df/files/168620fe-2ed1-481a-9251-93a54b59b33c.jpg",
   analytics: "https://cdn.poehali.dev/projects/b4883119-28f2-4b14-87a8-78e96b1776df/files/d83bf085-ef3d-4658-9aac-d7476e629cc7.jpg",
+  narrative: "https://cdn.poehali.dev/projects/b4883119-28f2-4b14-87a8-78e96b1776df/files/d3a0df2d-0c14-4d84-b2de-729e9e71dc6f.jpg",
+  webdev: "https://cdn.poehali.dev/projects/b4883119-28f2-4b14-87a8-78e96b1776df/files/cabd59bf-5c6f-44ca-bf4d-9569306115c1.jpg",
 };
 
 function useInView(threshold = 0.15) {
@@ -450,7 +452,7 @@ function Portfolio() {
       price: "30 000 – 40 000 ₽",
     },
     {
-      img: PORTFOLIO_IMAGES.bots,
+      img: PORTFOLIO_IMAGES.narrative,
       tag: "Нарративный дизайн",
       tagColor: "#FF9F0A",
       title: "Написание нарративных историй для игр",
@@ -459,7 +461,7 @@ function Portfolio() {
       price: "от 10 000 ₽ за 10 000 знаков",
     },
     {
-      img: PORTFOLIO_IMAGES.analytics,
+      img: PORTFOLIO_IMAGES.webdev,
       tag: "Создание сайтов",
       tagColor: "#32D74B",
       title: "Создание сайтов под ключ",
